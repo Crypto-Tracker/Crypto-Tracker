@@ -69,12 +69,8 @@ export default class Dashboard extends Component {
             Submit
           </a>
         </div>
-<<<<<<< HEAD
-        <div className="container"></div>
-=======
         <div className="container">
           Watches
->>>>>>> 0a964a01628e7ee3054ff76c4ddea7486cdb67e3
           <div className="row">
             <div className="watched">
               {this.state.watched.map(watched => (
@@ -95,6 +91,7 @@ export default class Dashboard extends Component {
             </div>
           </div>
         </div>
+      </div>
     );
   }
 }
