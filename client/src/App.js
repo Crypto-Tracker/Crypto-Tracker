@@ -7,6 +7,7 @@ import { logout } from "../src/components/helpers/auth";
 import { firebaseAuth } from "../src/components/config/constants";
 import "../src/components/Login/Login.css";
 import API from "./utils/API";
+import "./style.css";
 function PrivateRoute({ component: Component, authed, ...rest }) {
   return (
     <Route
@@ -200,9 +201,34 @@ export default class App extends Component {
                 />
               </Switch>
               <div>
-                {/* news */}
-                {this.state.news.map(articles => (
-                  <div>{console.log(articles)}</div>
+                {this.state.news.map(article => (
+                  <ul key={article.url} className="collection with-header">
+                    <br />
+                    <div>{console.log(article)}</div>
+                    <li className="collection-header">
+                      <h4>{article.title}</h4>
+                    </li>
+                    <li className="collection-item">
+                      <a href={article.url} target="blank">
+                        {article.url}
+                      </a>
+                    </li>
+                    <li className="collection-item">
+                      {article.date}
+                      <a
+                        className="fix secondary-content waves-effect waves-light btn"
+                        onClick={() =>
+                          this.saveArticle(
+                            article.title,
+                            article.date,
+                            article.url
+                          )
+                        }
+                      >
+                        Save
+                      </a>
+                    </li>
+                  </ul>
                 ))}
               </div>
             </div>
