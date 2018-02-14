@@ -23,10 +23,9 @@ export default class Dashboard extends Component {
   }
 
   saveCrypto = (name, price, uid) => {
-    API.saveCrypto({ coinName: name, coinPrice: price, uid }).then(res => {
+    API.saveCrypto({ coinName: name, coinPrice: price, uid }).then(() => {
       this.getWatched(this.state.uid);
     });
-    // () => this.getWatched(this.state.uid)));
   };
 
   getWatched = uid => {
@@ -41,8 +40,7 @@ export default class Dashboard extends Component {
   };
 
   render() {
-    //const uid = firebase.auth().currentUser.uid;
-
+    
     return (
       <div>
         <div className="row">
@@ -71,7 +69,12 @@ export default class Dashboard extends Component {
             Submit
           </a>
         </div>
+<<<<<<< HEAD
         <div className="container"></div>
+=======
+        <div className="container">
+          Watches
+>>>>>>> 0a964a01628e7ee3054ff76c4ddea7486cdb67e3
           <div className="row">
             <div className="watched">
               {this.state.watched.map(watched => (
