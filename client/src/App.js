@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Route, BrowserRouter, Link, Redirect, Switch } from "react-router-dom";
+import { RingLoader } from 'react-spinners';
 import Login from "../src/components/Login/Login";
 import Register from "../src/components/Login/Register";
 import Dashboard from "../src/components/Login/protected/Dashboard";
@@ -96,37 +97,42 @@ export default class App extends Component {
 
   render() {
     return this.state.loading === true ? (
-      <h1>Loading</h1>
+      <div className='sweet-loading'>
+      <RingLoader
+        color={'#123abc'} 
+        loading={this.state.loading} 
+      />
+    </div>
     ) : (
       <BrowserRouter>
         <div>
           <nav>
-            <div className="nav-wrapper teal">
+            <div className="nav-wrapper teal col s12">
               <a href="" className="brand-logo">
                 CryptoTracker
               </a>
-              <ul id="nav-mobile" className="right hide-on-med-and-down">
+              <ul id="nav-mobile" className="right">
                 <li>
                   {this.state.authed ? (
-                    <button
+                    <a
                       style={{ border: "none", background: "transparent" }}
                       onClick={() => {
                         logout();
                       }}
-                      className="nav-link glyphicon glyphicon-log-out"
+                      className="wave-effect wave-light btn-flat"
                     >
                       Logout
-                    </button>
+                    </a>
                   ) : (
                     <ul className="nav navbar-nav">
                       <li>
-                        <Link to="/login" className="nav-link">
+                        <Link to="/login" className="wave-effect wave-light btn-flat">
                           {" "}
                           Login
                         </Link>
                       </li>
                       <li>
-                        <Link to="/register" className="nav-link">
+                        <Link to="/register" className="wave-effect wave-light btn-flat">
                           {" "}
                           Register
                         </Link>
@@ -250,26 +256,26 @@ export default class App extends Component {
                   </p>
                 </div>
                 <div className="col l4 offset-l2 s12">
-                  <h5 className="white-text">Our App</h5>
+                  <h5 className="white-text">Team</h5>
                   <ul>
                     <li>
                       <a className="grey-text text-lighten-3" href="#!">
-                        About Us
+                        Adam Kojak
                       </a>
                     </li>
                     <li>
                       <a className="grey-text text-lighten-3" href="#!">
-                        Privacy policy
+                        Mohammed Wardeh
                       </a>
                     </li>
                     <li>
                       <a className="grey-text text-lighten-3" href="#!">
-                        Terms Conditions
+                        Raymundo Little Bitch
                       </a>
                     </li>
                     <li>
                       <a className="grey-text text-lighten-3" href="#!">
-                        Website disclaimer
+                        Scot Renz
                       </a>
                     </li>
                   </ul>
@@ -277,11 +283,8 @@ export default class App extends Component {
               </div>
             </div>
             <div className="footer-copyright">
-              <div className="container">
+              <div className="container center">
                 © 2018 Copyright CryptoTracker
-                <a className="grey-text text-lighten-4 right" href="#!">
-                  More Links
-                </a>
               </div>
             </div>
           </footer>
