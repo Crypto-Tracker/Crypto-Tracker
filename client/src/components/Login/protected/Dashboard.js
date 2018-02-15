@@ -75,7 +75,7 @@ export default class Dashboard extends Component {
           </a>
         </div>
         <div className="container">
-          Watches
+          <div className="center">Watches</div>
           <div className="row">
             <div className="watched">
               {this.state.watched.map(watched => (
