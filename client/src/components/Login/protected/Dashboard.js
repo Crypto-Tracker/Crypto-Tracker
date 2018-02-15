@@ -74,7 +74,6 @@ export default class Dashboard extends Component {
             Submit
           </a>
         </div>
-        
           <ul className="collection with-header">
             <h4 className="collection-header">Watches</h4>
                 {this.state.watched.map(watched => (
