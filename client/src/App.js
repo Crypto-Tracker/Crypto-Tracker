@@ -123,7 +123,7 @@ export default class App extends Component {
       <BrowserRouter>
         <div>
           <nav>
-            <div className="nav-wrapper teal col s12">
+            <div className="nav-wrapper black col s12">
               <a href="" className="brand-logo">
                 CryptoTracker
               </a>
@@ -135,20 +135,20 @@ export default class App extends Component {
                       onClick={() => {
                         logout();
                       }}
-                      className="wave-effect wave-light btn-flat"
+                      className="wave-effect wave-light btn grey"
                     >
                       Logout
                     </a>
                   ) : (
                     <ul className="nav navbar-nav">
                       <li>
-                        <Link to="/login" className="wave-effect wave-light btn-flat">
+                        <Link to="/login" className="wave-effect wave-light btn grey">
                           {" "}
                           Login
                         </Link>
                       </li>
                       <li>
-                        <Link to="/register" className="wave-effect wave-light btn-flat">
+                        <Link to="/register" className="wave-effect wave-light btn grey">
                           {" "}
                           Register
                         </Link>
@@ -239,23 +239,25 @@ export default class App extends Component {
                 <ul className="collection with-header">
                   <div className="collection-header">
                     <div className="row">
-                      <div className="col m3">
+                      <div className="col m12">
                         <h4>News</h4>
                       </div>
-                      <div className="col m6">
+                      <div className="row">
+                      <div className="col m8">
                         <input
                           value={this.state.headline}
                           onChange={this.handleInputChange}
                           name="headline"
                         />
                       </div>
-                      <div className="col m3">
+                      <div className="col m4">
                         <a
                           onClick={() => this.callNews()}
-                          className="wave-effect wave-light btn"
+                          className="wave-effect wave-light btn black"
                         >
                           search
                         </a>
+                      </div>
                       </div>
                     </div>
                   </div>
@@ -293,7 +295,7 @@ export default class App extends Component {
               </div>
             </div>
           </div>
-          <footer className="page-footer teal">
+          <footer className="page-footer black">
             <div className="container">
               <div className="row">
                 <div className="col l6 s12">
