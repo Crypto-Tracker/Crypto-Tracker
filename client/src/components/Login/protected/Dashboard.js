@@ -8,6 +8,7 @@ export default class Dashboard extends Component {
     cName: "",
     cPrice: "",
     watched: [],
+    market: "",
     uid: firebase.auth().currentUser.uid
   };
 
@@ -39,8 +40,12 @@ export default class Dashboard extends Component {
     API.deleteWatch(watchId).then(res => this.getWatched(this.state.uid));
   };
 
+  getMarket = name => {
+    console.log(name)
+    this.setState({market: name})
+  }
+
   render() {
-    
     return (
       <div>
         <div className="row">

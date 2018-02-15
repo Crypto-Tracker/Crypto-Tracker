@@ -43,8 +43,10 @@ export default class App extends Component {
     authed: false,
     loading: true,
     loadCryptos: [],
-    news: []
+    news: [],
+    location: window.location.href
   };
+
   componentDidMount() {
     this.removeListener = firebaseAuth().onAuthStateChanged(user => {
       if (user) {
@@ -60,17 +62,17 @@ export default class App extends Component {
       }
     });
     API.loadCryptos().then(res => this.setState({ loadCryptos: res.data }));
-    API.getNews().then(res => this.setState({ news: res.data }));
+    API.getNews("Cryptocurrencies").then(res => this.setState({ news: res.data }));
   }
   componentWillUnmount() {
     this.removeListener();
   }
-  callChart = coinName => {
+  callChart = (coinName, market) => {
     console.log("coinName");
     new window.TradingView.widget({
       width: 980,
       height: 610,
-      symbol: "Bitstamp:" + coinName + "usd",
+      symbol: market + ":" + coinName + "usd",
       interval: "D",
       timezone: "Etc/UTC",
       theme: "Light",
@@ -82,12 +84,13 @@ export default class App extends Component {
       hideideas: true
     });
     var a = document.createElement("a");
-    var linkText = document.createTextNode("my title text");
+    var linkText = document.createTextNode("Dashboard");
     a.appendChild(linkText);
     a.title = "Go Back";
     a.href = "/";
     document.body.appendChild(a);
   };
+
   render() {
     return this.state.loading === true ? (
       <h1>Loading</h1>
@@ -167,6 +170,7 @@ export default class App extends Component {
                     <th>Name</th>
                     <th>Price</th>
                     <th>Change (24h)</th>
+                    <th>Choose market to view chart</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -177,6 +181,36 @@ export default class App extends Component {
                       </td>
                       <td>{coin.price}</td>
                       <td>{coin.percent}</td>
+                      <td>
+                        <div className="market chip">
+                          <a className="market"
+                            onClick={() => this.callChart(coin.abv, "Bitstamp")}
+                          >
+                            Bitstamp
+                          </a>
+                        </div>
+                        <div className="chip">
+                          <a className="market"
+                            onClick={() => this.callChart(coin.abv, "Binance")}
+                          >
+                            Binance
+                          </a>
+                        </div>
+                        <div className="chip">
+                          <a  className="market"
+                            onClick={() => this.callChart(coin.abv, "Bittrex")}
+                          >
+                            Bittrex
+                          </a>
+                        </div>
+                        <div className="chip">
+                          <a  className="market"
+                            onClick={() => this.callChart(coin.abv, "Bitfinex")}
+                          >
+                            Bitfinex
+                          </a>
+                        </div>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -201,7 +235,6 @@ export default class App extends Component {
                 />
               </Switch>
               <div>
-                
                 <ul className="collection with-header">
                 <h4 className="collection-header">News</h4>
                   {this.state.news.map(article => (
